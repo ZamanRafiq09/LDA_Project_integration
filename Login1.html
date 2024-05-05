@@ -82,7 +82,7 @@
             <h2 class="text-center text-dark mt-5"></h2>
             <div class="card my-5">
     
-              <form class="card-body cardbody-color p-lg-5 ">
+              <form class="card-body cardbody-color p-lg-5 " id="loginForm">
     
                 <div class="text-center">
                   <img src="https://lda.gop.pk/ldaonline/plugins/images/logo3.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
@@ -94,17 +94,20 @@
                 </div>
 
                 <div class="mb-3">
-                  <input type="email" class="form-control" id="Username" aria-describedby="emailHelp"
+                  <input type="text" class="form-control" id="email"name="email" aria-describedby="emailHelp"
                     placeholder="Email">
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" id="password" placeholder="Password">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <div class="text-center">
                   
-                  <a href="Dashboard.html">
+                  <!-- <a href="Dashboard.html">
                     <span class="btn btn-color px-5 mb-5 w-100" style="cursor: pointer;">Sign In</span>
-                </a>                                 
+                </a>  
+                                              -->
+                                              <input type="submit" aria-label="Login" class="btn btn-color px-5 mb-5 w-100" />
+                                            </div>
               </div>
                  <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not Registered? <a href="SignUp.html" class="text-dark fw-bold"> Create an Account</a>
                 </div>
@@ -114,5 +117,32 @@
           </div>
         </div>
       </div>
+      <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent default form submission
+    
+          // Collect form data
+          const formData = new FormData(this);
+    
+          // Make API call
+          const response = await fetch("http://127.0.0.1:3333/login", {
+            method: "POST",
+            body: formData
+          })
+            .then(response => { return response })
+            .then(result => { return result.json() })
+            .catch(error => alert(error));
+          console.log(response)
+          if (response.status) {
+            localStorage.setItem('token', response.data.access_token)
+            setTimeout(() => {
+              window.location.href = "Dashboard.html"; // Redirect to Dashboard
+            }, [2000])
+          }
+          else {
+            alert(response.message)
+          }
+        });
+      </script>
 </body>
 </html>

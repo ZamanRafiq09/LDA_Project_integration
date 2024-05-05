@@ -1,64 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Page Title</title>
-<link rel="stylesheet" type="text/css" href="homescreenApproval.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" type="text/css" href="homescreenApproval.css">
 </head>
+
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><img src="logo.png" alt="Navigation bar logo"></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <ul>
+                <li><img src="logo.png" alt="Navigation bar logo"></li>
+            </ul>
+        </nav>
+    </header>
 
-<div class="container">
-    <h1 class="title">Applications </h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Application Date</th>
-                <th>Status</th>
-                <th>List</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr data-date="2024-04-20">
-                <td>1</td>
-                <td>2024-04-26</td>
-                <td>Pending</td>
-                <td><a href="#">Details</a></td>
-            </tr>
-            <tr data-date="2024-04-22">
-                <td>2</td>
-                <td>2024-04-22</td>
-                <td>Pending</td>
-                <td><a href="#">Details</a></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="container">
+        <h1 class="title">Applications </h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>List</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- <tr data-date="2024-04-20">
+                    <td>1</td>
+                    <td>2024-04-26</td>
+                    <td>Pending</td>
+                    <td><a href="applicationApproval.html">Details</a></td>
+                </tr>
+                <tr data-date="2024-04-22">
+                    <td>2</td>
+                    <td>2024-04-22</td>
+                    <td>Pending</td>
+                    <td><a href="applicationApproval.html">Details</a></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./tokenValidation.js"></script>
 
-<script>
-    const tbody = document.querySelector('.table tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
+    <script>
 
-    rows.sort((a, b) => {
-        const dateA = new Date(a.dataset.date);
-        const dateB = new Date(b.dataset.date);
-        return dateA - dateB;
-    });
+        (async () => {
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
 
-    tbody.innerHTML = ''; // Clear the tbody
+            const requestOptions = {
+                method: "GET",
+                headers: myHeaders,
+                redirect: "follow"
+            };
 
-    rows.forEach(row => {
-        tbody.appendChild(row);
-    });
-</script>
+            const response = await fetch("http://127.0.0.1:3333/plan/list", requestOptions);
+
+            const checkAuth = checkUnAuth(response)
+            if (checkAuth) {
+                const data = await response.json();
+
+                const tbody = document.getElementById('tableBody');
+                //const rows = Array.from(tbody.querySelectorAll('tr'));
+                if (data?.data) {
+                    let html = '';
+                    data?.data?.map((response) => {
+                        localStorage.setItem(`plan_${response.id}`, JSON.stringify(response))
+                        html = html + `<tr data-date="${response.created_at.split('T')[0]}">
+                            <td>${response.id}</td>
+                            <td>${response.created_at.split('T')[0]}</td>
+                            <td>${response.status}</td>
+                            <td><a href="applicationApproval.html?id=${response.id}">Details</a></td>
+                        </tr>`
+                    });
+                    tbody.innerHTML = html;
+                }
+
+
+            }
+        })()
+    </script>
 
 </body>
+
 </html>

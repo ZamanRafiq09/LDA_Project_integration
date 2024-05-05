@@ -79,33 +79,29 @@
             
             <div class="card my-5">
 
-                <form class="card-body cardbody-color p-lg-5">
+                <form id="signupForm" class="card-body cardbody-color p-lg-5">
 
                     <div class="text-center">
                         <img src="https://lda.gop.pk/ldaonline/plugins/images/logo3.png"
                              class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                              width="100px" alt="profile">
                     </div>
-
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+                               placeholder="Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
                                placeholder="Email">
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="cnic" aria-describedby="cnicHelp"
-                               placeholder="CNIC">
-                    </div>
-
-
-                    <div class="mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password"  name="password" placeholder="Password">
                     </div>
 
                     <div class="text-center">
-                        <a href="Login1.html" class="btn btn-color">
-                            <span>Sign Up</span>
-                        </a>
+                        <input type="submit" aria-label="Signup" class="btn btn-color px-5 mb-5 w-100"  class="btn btn-color">
+                            
                     </div>
                     
 
@@ -118,5 +114,39 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("signupForm").addEventListener("submit", async function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Collect form data
+      const formData = new FormData(this);
+
+      // Make API call
+      const response = await fetch("http://127.0.0.1:3333/signup", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => { return response })
+        .then(result => { return result.json() })
+        .catch(error => alert(error));
+      console.log(response)
+      if (response.status) {
+        localStorage.setItem('token', response.data.access_token)
+        setTimeout(() => {
+          window.location.href = "Dashboard.html"; // Redirect to Dashboard_Admin
+        }, [2000])
+      }
+      else {
+        console.log(response)
+        if(response?.errors){
+           let errors= response.errors.map(data=>data.message)
+           errors=JSON.stringify(errors) 
+           alert(errors)
+        }
+        else
+        {alert(response.message)}
+      }
+    });
+  </script>
 </body>
 </html>

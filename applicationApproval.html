@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Information</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #52497b;
+      /* Same background color as previous page */
+    }
+
+    nav li img {
+      width: 1450px;
+      /* Adjust width as needed */
+      height: 75px;
+      margin-left: -40px;
+      /* Adjust height as needed */
+      margin-top: -20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    .container {
+      max-width: 800px;
+      text-align: center;
+      margin: 50px auto;
+      width: 500px;
+      background-color: #f0f2f5;
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 60px;
+    }
+
+    .title {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #333;
+      /* Text color */
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table th,
+    .table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .table th {
+      background-color: #f2f2f2;
+      /* Table header background color */
+    }
+
+    .table td {
+      background-color: #fff;
+      /* Table cell background color */
+    }
+
+    .table tr:hover td {
+      background-color: #f5f5f5;
+      /* Hover background color */
+    }
+
+    /* Styling for the detail button */
+    .detail-button {
+      background-color: #007bff;
+      /* Button background color */
+      color: #fff;
+      /* Button text color */
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .detail-button:hover {
+      background-color: #0056b3;
+      /* Button background color on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><img src="logo.png" alt="Navigation bar logo"></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2 class="title">Customer Information</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>CNIC</th>
+          <th>Application Number</th>
+          <th>Documents Uploaded</th>
+        </tr>
+      </thead>
+      <tbody id="customerData">
+        <!-- Table body will be populated dynamically -->
+      </tbody>
+    </table>
+    <a href="#" id="rejectButton" class="detail-button" onclick="reject()">Reject</a>
+    <a href="#" id="approveButton" class="detail-button" onclick="approve()">Approve</a>
+  </div>
+  <script src="./tokenValidation.js"></script>
+
+  <script>
+    let responseData
+    let type
+
+    const rejectButton = document.getElementById("rejectButton")
+    const approveButton = document.getElementById("approveButton")
+    rejectButton.style.display = "none"
+    approveButton.style.display = "none"
+    function fetchData() {
+
+      const url = new URL(window.location.href);
+      console.log(url)
+      // Get the value of the 'id' parameter from the URL
+      const tableBoday = document.getElementById('customerData')
+      tableBoday.innerHTML = ''
+      let html = ''
+      const id = url.searchParams.get('id');
+      type = url.searchParams.get('type');
+
+      const data = type === 'property' ? localStorage.getItem(`property_${id}`) : localStorage.getItem(`plan_${id}`)
+      if (data) {
+        responseData = JSON.parse(data)
+        console.log(responseData)
+        if (type === 'property') {
+          html = `<tr data-date="${responseData.created_at.split('T')[0]}">
+            <td><b>Buyer:</b>${responseData.buyer.cnic}<br>
+              <b>Seller:</b>${responseData.buyer.cnic}<br></td>
+            <td>${responseData.id}</td>
+          <td>
+            <a href="http://localhost:3333${responseData.NOC.pull_path}" traget="__blank" download>NOC</a><br>
+            <b>Buyer</b><br>
+            <a href="http://localhost:3333${responseData.buyer.CNICBack.full_path}" traget="__blank" download>CNIC Back</a><br>
+            <a href="http://localhost:3333${responseData.buyer.CNICFront.full_path}" traget="__blank" download>CNIC Front</a><br>
+            <b>Seller</b><br>
+            <a href="http://localhost:3333${responseData.seller.CNICBack.full_path}" traget="__blank" download>CNIC Back</a><br>
+            <a href="http://localhost:3333${responseData.seller.CNICFront.full_path}" traget="__blank" download>CNIC Front</a><br>
+          </td>
+          </tr>`
+          //<td><a href="http://localhost:3333${responseData.Plan.path_full}" traget="__blank" download>Download Plan</a></td>
+        } else {
+
+          html = `<tr data-date="${responseData.created_at.split('T')[0]}">
+            <td>${responseData.cnic}</td>
+            <td>${responseData.id}</td>
+            <td><a href="http://localhost:3333${responseData.Plan.path_full}" traget="__blank" download>Download Plan</a></td>
+        </tr>`
+        }
+        if (responseData.status === "approved") {
+          rejectButton.style.display = "block"
+          approveButton.style.display = "none"
+        } else if (responseData.status === "rejected") {
+          rejectButton.style.display = "none"
+          approveButton.style.display = "block"
+        } else {
+          rejectButton.style.display = "block"
+          approveButton.style.display = "block"
+        }
+        tableBoday.innerHTML = html
+      } else {
+        alert("No Data Found")
+      }
+    }
+    fetchData()
+    async function approve() {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+      };
+
+      const response = await fetch(`http://127.0.0.1:3333/${type === 'property' ? 'property' : 'plan'}/approve/${responseData.id}`, requestOptions);
+
+      const checkAuth = checkUnAuth(response)
+      if (checkAuth) {
+        const data = await response.json();
+        //const rows = Array.from(tbody.querySelectorAll('tr'));
+        if (data?.status) {
+          alert(data.message)
+          if (type === 'property') {
+            window.location.href = "homescreen.html";
+          }
+          else {
+            window.location.href = "homescreenApproval.html";
+          }
+
+        } else {
+          alert(data.message)
+        }
+      }
+    }
+    async function reject() {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+      };
+
+      const response = await fetch(`http://127.0.0.1:3333/${type === 'property' ? 'property' : 'plan'}/reject/${responseData.id}`, requestOptions);
+
+      const checkAuth = checkUnAuth(response)
+      if (checkAuth) {
+        const data = await response.json();
+        //const rows = Array.from(tbody.querySelectorAll('tr'));
+        if (data?.status) {
+          alert(data.message)
+          if (type === 'property') {
+            window.location.href = "homescreen.html";
+          }
+          else {
+            window.location.href = "homescreenApproval.html";
+          }
+
+        } else {
+          alert(data.message)
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
