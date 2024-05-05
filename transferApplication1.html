@@ -138,8 +138,8 @@
                 <input type="text" id="buyer_cnic" name="buyer_cnic" required>
             </div>
             <div class="form-group">
-                <label for="buyer_phone">Phone:</label>
-                <input type="tel" id="buyer_phone" name="buyer_phone" required>
+                <label for="buyer_email">Email:</label>
+                <input type="email" id="buyer_email" name="buyer_email" required>
             </div>
             <div class="form-pic">
                 <label for="buyer_cnic_front">CNIC Front Side:</label>
@@ -160,8 +160,8 @@
                 <input type="text" id="seller_cnic" name="seller_cnic" required>
             </div>
             <div class="form-group">
-                <label for="seller_phone">Phone:</label>
-                <input type="tel" id="seller_phone" name="seller_phone" required>
+                <label for="seller_email">Email:</label>
+                <input type="email" id="seller_email" name="seller_email" required>
             </div>
             <div class="form-pic">
                 <label for="seller_cnic_front">CNIC Front Side:</label>
@@ -199,7 +199,7 @@
                 .catch(error => alert(error));
             console.log(response)
             if (response.status) {
-                window.location.href = "transferApplication2.html"; 
+                window.location.href = "transferApplication2.html";
             }
             else {
                 alert(response.message)
