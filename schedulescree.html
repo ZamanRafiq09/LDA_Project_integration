@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Meeting</title>
+    <link rel="stylesheet" href="schedulescreen.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><img src="logo.png" alt="Navigation bar logo"></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Schedule a Meeting</h1>
+        <input type="date" id="date">
+        <input type="time" id="time">
+        <button id="scheduleBtn">Schedule Meeting</button>
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="fingerprint">
+            <span>Verify Fingerprint</span>
+        </div>
+    </div>
+    <button id="nextBtn" class="bottom-right">Next</button>
+    <div id="notification"></div>
+    <script src="schedulescreen.js"></script>
+</body>
+</html>

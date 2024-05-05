@@ -1,0 +1,78 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #52497b;
+}
+
+.container {
+  max-width: 800px;
+  text-align: center;
+  margin: 50px auto;
+  width: 500px; /* Adjust width as needed */
+  background-color: #f0f2f5; /* Light gray background */
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+  margin-top:60px
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.upload-section {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e0e0e0; /* Light gray background for buttons */
+  color: #333; /* Black text color for buttons */
+}
+
+.uploaded {
+  background-color: #4CAF50; /* Green background for uploaded buttons */
+  color: #ffffff13; /* White text color for uploaded buttons */
+}
+nav li img {
+    width: 1450px; /* Adjust width as needed */
+    height: 75px; 
+    margin-left:-40px;/* Adjust height as needed */
+   margin-top: -20px;
+  }
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+.bottom-right {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 100px;
+    margin-left: -50px;
+    padding: 15px;
+}
+button#nextBtn:hover {
+    background-color: #dddddd86; /* Light grey background on hover */
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" type="text/css" href="homescreenApproval.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><img src="logo.png" alt="Navigation bar logo"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="title">Applications </h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>List</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-date="2024-04-20">
+                    <td>1</td>
+                    <td>2024-04-26</td>
+                    <td>Pending</td>
+                    <td><a href="#">Details</a></td>
+                </tr>
+                <tr data-date="2024-04-22">
+                    <td>2</td>
+                    <td>2024-04-22</td>
+                    <td>Pending</td>
+                    <td><a href="#">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        (async () => {
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+            const requestOptions = {
+                method: "GET",
+                headers: myHeaders,
+                redirect: "follow"
+            };
+
+            const data = await fetch("http://127.0.0.1:3333/property/list", requestOptions)
+                .then((response) => { return response })
+                .then((result) => { return result.json() })
+                .catch((error) => console.error(error));
+            const tbody = document.querySelector('.table tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            rows.sort((a, b) => {
+                const dateA = new Date(a.dataset.date);
+                const dateB = new Date(b.dataset.date);
+                return dateA - dateB;
+            });
+
+            tbody.innerHTML = ''; // Clear the tbody
+
+            rows.forEach(row => {
+                tbody.appendChild(row);
+            });
+        })()
+    </script>
+
+</body>
+
+</html>

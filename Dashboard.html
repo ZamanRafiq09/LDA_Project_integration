@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px; /* Adjust the maximum width of the container */
+            width: 100%; /* Make container responsive */
+        }
+
+        .btn-color {
+            background-color: rgba(13, 32, 118, 255);
+            color: #fff;
+            padding: 20px; /* Adjust button padding */
+            border-radius: 10px; /* Rounded corners for the button */
+            border: none; /* Remove button border */
+            cursor: pointer; /* Add pointer cursor on hover */
+            width: 100%; /* Make button width full */
+            margin-bottom: 10px; /* Add margin between buttons */
+        }
+
+        .profile-image-pic {
+            width: 100px; /* Adjust profile image width */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .cardbody-color {
+            background-color: #ebf2fa;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff; /* Change link color */
+            font-size: 18px;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        .dashboard {
+            display: flex;
+            margin-bottom: 20px; /* Add margin between links */
+            padding: 20px; /* Add padding to links */
+            border-radius: 10px; /* Rounded corners for links */
+            justify-content: center;
+        }
+
+        
+
+        .logout-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            
+            <div class="card my-5">
+
+                <div class="text-center">
+                    <img src="https://lda.gop.pk/ldaonline/plugins/images/logo3.png"
+                         class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                         width="100px" alt="logo">
+                </div>
+
+                <div class="dashboard-heading">
+                    <h2 class="text-center text-dark mt-5">User Dashboard</h2>
+                </div>
+
+                <div class="dashboard">
+                    <button class="btn-color">
+                        <a href="transferApplication1.html" class="dashboard">Transfer Property</a>
+                    </button>
+                </div>
+                <div class="dashboard">
+                    <button class="btn-color">
+                        <a href="building1 (1).html" class="dashboard">Building Plan Approval</a>
+                    </button>
+                </div>
+
+                <div class="logout-link">
+                    <button class="btn-color">
+                        <a href="Login1.html" class="text-dark fw-bold">Logout</a>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

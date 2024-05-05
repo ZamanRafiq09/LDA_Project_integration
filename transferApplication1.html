@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Transfer</title>
+    <link rel="stylesheet" href="transferApplication1.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .button {
+            background-color: #001F3F;
+            /* Button background color */
+            color: #fff;
+            /* Button text color */
+            padding: 10px 20px;
+            /* Padding for spacing */
+            border: none;
+            /* Remove default link border */
+            border-radius: 4px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Indicate clickable behavior */
+            text-decoration: none;
+            /* Remove underline from link text */
+            margin-top: 1rem;
+            /* Add space between building info and button */
+        }
+
+        .button:hover {
+            /* Styling for hover effect */
+            background-color: #1100f8;
+            /* Change background color on hover */
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: #001F3F;
+            /* Navy blue for heading */
+        }
+
+        .container {
+            padding: 50px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-pic {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: #001F3F;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="top-section">
+        <img src="images/lda.png" alt="LDA" class="logo">
+        <nav>
+
+            <a href="Login1.html" class="button">Log Out</a>
+
+        </nav>
+    </section>
+
+    <header class="header">
+
+        <h1 style="color: #001F3F;">Property Transfer</h1>
+    </header>
+
+    <main class="container">
+
+
+        <form method="post" id="transferForm" enctype="multipart/form-data" onsubmit="submitForm()">
+            <h2>Buyer Information</h2>
+            <div class="form-group">
+                <label for="buyer_name">Name:</label>
+                <input type="text" id="buyer_name" name="buyer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="buyer_cnic">CNIC:</label>
+                <input type="text" id="buyer_cnic" name="buyer_cnic" required>
+            </div>
+            <div class="form-group">
+                <label for="buyer_phone">Phone:</label>
+                <input type="tel" id="buyer_phone" name="buyer_phone" required>
+            </div>
+            <div class="form-pic">
+                <label for="buyer_cnic_front">CNIC Front Side:</label>
+                <input type="file" id="buyer_cnic_front" name="buyer_cnic_front" accept="image/*" required>
+            </div>
+            <div class="form-pic">
+                <label for="buyer_cnic_back">CNIC Back Side:</label>
+                <input type="file" id="buyer_cnic_back" name="buyer_cnic_back" accept="image/*" required>
+            </div>
+
+            <h2>Seller Information</h2>
+            <div class="form-group">
+                <label for="seller_name">Name:</label>
+                <input type="text" id="seller_name" name="seller_name" required>
+            </div>
+            <div class="form-group">
+                <label for="seller_cnic">CNIC:</label>
+                <input type="text" id="seller_cnic" name="seller_cnic" required>
+            </div>
+            <div class="form-group">
+                <label for="seller_phone">Phone:</label>
+                <input type="tel" id="seller_phone" name="seller_phone" required>
+            </div>
+            <div class="form-pic">
+                <label for="seller_cnic_front">CNIC Front Side:</label>
+                <input type="file" id="seller_cnic_front" name="seller_cnic_front" accept="image/*" required>
+            </div>
+            <div class="form-pic">
+                <label for="seller_cnic_back">CNIC Back Side:</label>
+                <input type="file" id="seller_cnic_back" name="seller_cnic_back" accept="image/*" required>
+            </div>
+            <h2>NOC</h2>
+            <div class="form-pic">
+                <label for="noc"> Upload in pdf format</label>
+                <input type="file" id="noc" name="noc" required accept=".pdf" multiple=false>
+            </div>
+            <!-- href="processing2.html" -->
+            <input type="submit" class="button" value="Submit">
+            <button type="button" class="button" onclick="cancelForm()">Cancel</button>
+        </form>
+    </main>
+    <script>
+        // Function to handle form submission
+        document.getElementById("transferForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const formData = new FormData(this);
+
+            // Make API call
+            const response = await fetch("http://127.0.0.1:3333/propertySell", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => { return response })
+                .then(result => { return result.json() })
+                .catch(error => alert(error));
+            console.log(response)
+            if (response.status) {
+                window.location.href = "processing2.html"; // Redirect to processing2
+            }
+            else {
+                alert(response.message)
+            }
+        });
+
+        // Function to handle form cancellation
+        function cancelForm() {
+            window.location.href = "Dashboard.html"; // Redirect to dashboard
+        }
+    </script>
+</body>
+
+</html>
