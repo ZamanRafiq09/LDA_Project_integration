@@ -133,7 +133,7 @@
       if (response.status) {
         localStorage.setItem('token', response.data.access_token)
         setTimeout(() => {
-          window.location.href = "Dashboard_Admin.html"; // Redirect to Dashboard_Admin
+          window.location.href = "Dashboard.html"; // Redirect to Dashboard_Admin
         }, [2000])
       }
       else {

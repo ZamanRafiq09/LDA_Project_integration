@@ -14,9 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Add event listener to the logout button
-document.getElementById("logout").addEventListener("click", function () {
+document.getElementById("logout")?.addEventListener("click", function () {
   // Remove the token from localStorage
   localStorage.removeItem("token");
   // Redirect user to the login page
   window.location.href = "Admin_Login.html";
 });
+
+function checkUnAuth(response) {
+  if (!response.ok) {
+    if (response.status === 401) {
+      // Handle 401 Unauthorized error here
+      window.location.href = "Admin_Login.html";
+      localStorage.clear();
+      return;
+    } else {
+      // Handle other errors
+      console.error("Error:", response.statusText);
+    }
+  } else {
+    return true;
+  }
+}

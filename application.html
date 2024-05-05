@@ -78,40 +78,103 @@
   </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><img src="logo.png" alt="Navigation bar logo"></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li><img src="logo.png" alt="Navigation bar logo"></li>
+      </ul>
+    </nav>
+  </header>
 
   <div class="container">
     <h2 class="title">Customer Information</h2>
-    <table class="table">
+    <div id="loadingMessage">Loading...</div>
+    <div id="errorMessage" style="color: red;"></div>
+    <table class="table" id="customerTable" style="display: none;">
       <thead>
         <tr>
           <th>CNIC</th>
+          <th>Id Number</th>
           <th>NOC Number</th>
           <th>Documents Uploaded</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>12345-6789012-3</td> <!-- Replace with actual CNIC -->
-          <td>NOC-2024-001</td> <!-- Replace with actual NOC number -->
-          <td>
-            <ul>
-              <li><a href="document1.pdf" target="_blank">Document 1</a></li> <!-- Replace with actual document link -->
-              <li><a href="document2.pdf" target="_blank">Document 2</a></li> <!-- Replace with actual document link -->
-              <li><a href="document3.pdf" target="_blank">Document 3</a></li> <!-- Replace with actual document link -->
-              <!-- Add more items for each document uploaded by the customer -->
-            </ul>
-          </td>
-        </tr>
+      <tbody id="customerData">
+        <!-- Table body will be populated dynamically -->
       </tbody>
     </table>
-    <a href="#" class="detail-button">Next</a>
+    <!-- Buttons for action -->
+    <a href="schedulescree.html" class="detail-button">Approved</a>
+    <button class="detail-button" onclick="reject()">Reject</button>
   </div>
+
+  <script>
+    // JavaScript code for fetching data and populating the table
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer MQ.8GVEitrFwftW3eWMsVz-2CMI0Jb7GRt34FpB2Q0dwjedXv4tByJSFO53cn8w");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    fetch("http://localhost:3333/plan/list", requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then(data => {
+        const customerData = document.getElementById("customerData");
+        const customerTable = document.getElementById("customerTable");
+        const loadingMessage = document.getElementById("loadingMessage");
+
+        // Hide loading message
+        loadingMessage.style.display = "none";
+
+        // Clear any existing data
+        customerData.innerHTML = "";
+
+        // Show table
+        customerTable.style.display = "table";
+
+        // Check if data is an array
+        if (Array.isArray(data)) {
+          // Loop through fetched data and populate the table
+          data.forEach(customer => {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+              <td>${customer.CNIC}</td>
+              <td>${customer.NOCNumber}</td>
+              <td>
+                <ul>
+                  ${customer.planUploaded.map(document => `
+                    <li><a href="${document.link}" target="_blank">${document.name}</a></li>
+                  `).join("")}
+                </ul>
+              </td>
+            `;
+            customerData.appendChild(newRow);
+          });
+        } else {
+          throw new Error("Data received is not in the expected format");
+        }
+      })
+      .catch(error => {
+        const errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = error.message;
+      });
+
+    // Functions for button actions
+    function approve() {
+      window.location.href = "schedulescreen.html";
+    }
+
+    function reject() {
+      // Implement reject action
+    }
+  </script>
 </body>
 </html>
