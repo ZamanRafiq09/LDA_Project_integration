@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #52497b; /* Dark blue background */
+    color: black; /* Black text color */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: -50px;
+    padding: 60px;
+    background-color: #fff;
+    border-radius: 40px;
+    margin-top: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input[type="date"],
+input[type="time"],
+button {
+    display: block;
+    width: calc(100% - 20px); /* Adjust width */
+    margin: 0 auto 20px auto; /* Center and space between elements */
+    padding: 10px;
+    background-color: #f2f2f2; /* Light grey background for inputs and buttons */
+    color: black; /* Black text color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size:medium;
+    width: 170px;
+    margin-left: -10px;
+
+}
+
+button#scheduleBtn {
+    width: auto; 
+    margin-left: 300px;/* Make button width automatic */
+}
+
+button#scheduleBtn:hover {
+    background-color: #ddddddcc; /* Light grey background on hover */
+}
+
+#notification {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.bottom-right {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 100px;
+    margin-left: -50px;
+    padding: 15px;
+}
+button#nextBtn:hover {
+    background-color: #dddddd86; /* Light grey background on hover */
+}
+nav li img {
+    width: 1450px; /* Adjust width as needed */
+    height: 75px; 
+    margin-left:-40px;/* Adjust height as needed */
+   margin-top: -20px;
+  }
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}

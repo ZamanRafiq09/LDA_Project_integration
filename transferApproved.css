@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    /* Style your header here */
+    padding: 1rem 2rem;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    width: 100px; 
+    }
+  main {
+    padding: 2rem;
+  }
+  
+  .transfer-status {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  .transfer-status h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+  }
+  
+  .download-btn {
+    background-color: #001F3F; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding for spacing */
+    border: none; /* Remove default link border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate clickable behavior */
+    text-decoration: none; /* Remove underline from link text */
+  }
+  
+  .download-btn:hover { /* Styling for hover effect */
+    background-color: #1100f8; /* Change background color on hover */
+  }
+  

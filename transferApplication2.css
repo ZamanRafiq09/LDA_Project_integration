@@ -1,0 +1,83 @@
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .form-container h3 {
+    margin-top: 2rem; /* Add space between parts */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  /* Increased margins for spacing between form elements */
+.form-group {
+    margin-bottom: 1rem;
+  }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f0f0f0;
+}
+.form-grid {
+    display: flex;
+    margin-left: 10%; /* Adjust margin-left for desired spacing */
+}
+.form-label,
+.form-input {
+  width: 50%;
+}
+.form-container {
+  grid-template-columns: 1fr 2fr; /* One-fourth width for left column, two-fourths for right */
+  grid-gap: 1rem; /* Margin between columns */  
+  margin-left: 2rem; /* Margin from the left edge */
+}
+
+.logo {
+width: 100px; 
+}
+button {
+  background-color: #001F3F;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.form-group label[for^="politicallyExposed"] {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+
+  h3{
+    text-align: flex;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    background-color: #001F3F; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding for spacing */
+    border: none; /* Remove default link border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate clickable behavior */
+    text-decoration: none; /* Remove underline from link text */
+    justify-content: space-between;
+  align-items: center;
+
+  }
+  
+  .button:hover { /* Styling for hover effect */
+    background-color: #1100f8; /* Change background color on hover */
+  }
+  

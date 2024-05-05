@@ -1,0 +1,101 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between; /* Align items on the opposite ends */
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f0f0f0;
+  }
+  
+  .logo {
+    width: 100px; 
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  main {
+    padding: 2rem;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column; /* Stack form items on top of each other */
+    align-items: center; /* Center the button horizontally */
+    width: 100%;
+  }
+  
+  .form-group {
+    width: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  .form-pic{
+    margin-bottom: 15px;
+    padding: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+  
+  .button {
+    background-color: #001F3F; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding for spacing */
+    border: none; /* Remove default link border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate clickable behavior */
+    text-decoration: none; /* Remove underline from link text */
+    margin-top: 1rem; /* Add space between building info and button */
+  }
+  
+  .button:hover { /* Styling for hover effect */
+    background-color: #1100f8; /* Change background color on hover */
+  }
+  nav {
+    flex: 1;  /* Allow nav to grow and fill remaining space */
+    display: flex;
+    justify-content: flex-end;  /* Align links to the right */
+    align-items: center;
+}
+
+  

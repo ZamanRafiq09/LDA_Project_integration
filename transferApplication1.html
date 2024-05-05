@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Transfer</title>
+    <link rel="stylesheet" href="transferApplication1.css">
+<style>
+    body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+}
+.top-section {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+background-color: #f0f0f0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.button {
+    background-color: #001F3F; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Padding for spacing */
+    border: none; /* Remove default link border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate clickable behavior */
+    text-decoration: none; /* Remove underline from link text */
+    margin-top: 1rem; /* Add space between building info and button */
+  }
+  
+  .button:hover { /* Styling for hover effect */
+    background-color: #1100f8; /* Change background color on hover */
+  }
+
+.logo {
+    width: 100px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    color: #001F3F;
+    /* Navy blue for heading */
+}
+
+.container {
+    padding: 50px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-pic{
+    margin-bottom: 15px;
+    padding: 10px;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+button {
+background-color: #001F3F;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 4px;
+cursor: pointer;
+align-items: center;
+}
+
+
+input[type="text"],
+input[type="tel"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+}
+    </style>
+</head>
+
+<body>
+
+    <section class="top-section">
+        <img src="images/lda.png" alt="LDA" class="logo">
+        <nav>
+         
+            <a href="Login1.html" class="button">Log Out</a>
+          
+        </nav>
+      </section>
+       
+    <header class="header">
+
+    <h1 style="color: #001F3F;">Property Transfer</h1>
+</header>
+
+    <main class="container">
+       
+
+        <form action="submit.php" method="post" enctype="multipart/form-data">
+            <h2>Buyer Information</h2>
+            <div class="form-group">
+                <label for="buyerName">Name:</label>
+                <input type="text" id="buyerName" name="buyerName" required>
+            </div>
+            <div class="form-group">
+                <label for="buyerCNIC">CNIC:</label>
+                <input type="text" id="buyerCNIC" name="buyerCNIC" required>
+            </div>
+            <div class="form-group">
+                <label for="buyerPhone">Phone:</label>
+                <input type="tel" id="buyerPhone" name="buyerPhone" required>
+            </div>
+            <div class="form-pic">
+                <label for="buyerCNICPic">CNIC Front Side:</label>
+                <input type="file" id="buyerCNICPic" name="buyerCNICPic" required>
+            </div>
+            <div class="form-pic">
+                <label for="buyerPicture2">CNIC Back Side:</label>
+                <input type="file" id="buyerPicture2" name="buyerPicture2" accept="image/*" required>
+            </div>
+
+            <h2>Seller Information</h2>
+            <div class="form-group">
+                <label for="sellerName">Name:</label>
+                <input type="text" id="sellerName" name="sellerName" required>
+            </div>
+            <div class="form-group">
+                <label for="sellerCNIC">CNIC:</label>
+                <input type="text" id="sellerCNIC" name="sellerCNIC" required>
+            </div>
+            <div class="form-group">
+                <label for="sellerPhone">Phone:</label>
+                <input type="tel" id="sellerPhone" name="sellerPhone" required>
+            </div>
+            <div class="form-pic">
+                <label for="sellerCNICPic">CNIC Front Side:</label>
+                <input type="file" id="sellerCNICPic" name="sellerCNICPic" required>
+            </div>
+            <div class="form-pic">
+                <label for="sellerPicture2">CNIC Back Side:</label>
+                <input type="file" id="sellerPicture2" name="sellerPicture2" accept="image/*" required>
+            </div>
+            <h2>NOC</h2>
+            <div class="form-pic">
+                <label for="nocPic"> Upload in pdf format</label>
+                <input type="file" id="nocPic" name="nocPic" required accept=".pdf" multiple=false>
+            </div>
+            <a href="processing2.html" class="button">Submit</a>
+            <a href="Dashboard.html" class="button">Cancel</a>
+        </form>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Transfer Application</title>
+  <link rel="stylesheet" href="transferApplication2.css">
+
+</head>
+<body>
+  <header>
+    <img src="images/lda.png" alt="Logo" class="logo">
+
+    <nav>         
+      <a href="Login1.html" class="button">Log Out</a>    
+  </nav>
+  </header>
+
+  <main>
+    <h2>Property Transfer Application</h2>
+
+    <form class="form-container">
+        <h3>PART 1: Property Details</h3>
+      <div class="form-group">
+        <label for="plotSale">Sale of Plots:</label>
+        <select id="plotSale" name="plotSale">
+          <option value="">Select</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pierNumber">Pier Number:</label>
+        <input type="text" id="pierNumber" name="pierNumber" required>
+      </div>
+      <div class="form-group">
+        <label for="scheme">Scheme:</label>
+        <input type="text" id="scheme" name="scheme" required>
+      </div>
+      <div class="form-group">
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" required>
+      </div>
+
+      <h3>PART 2: Basic Information (Seller/Transferor)</h3>
+      <div class="form-group">
+        <label for="fullName">Full Name (as per ID Documents):</label>
+        <input type="text" id="fullName" name="fullName" required>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+      </div>
+      <div class="form-group">
+        <label for="placeOfBirth">Place of Birth:</label>
+        <input type="text" id="placeOfBirth" name="placeOfBirth" required>
+      </div>
+      <div class="form-group">
+        <label for="residenceAddress">Residence Address:</label>
+        <textarea id="residenceAddress" name="residenceAddress" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+      </div>
+      <div class="form-group">
+        <label for="emailAddress">Email Address:</label>
+        <input type="email" id="emailAddress" name="emailAddress" required>
+      </div>
+
+      <h3>PART 3: Politically Exposed</h3>
+      <div class="form-group">
+        <label for="politicallyExposed">Are you or any beneficial owner a politically exposed person?</label>
+        <input type="radio" id="yesPoliticallyExposed" name="politicallyExposed" value="yes">
+        <label for="yesPoliticallyExposed">Yes</label>
+        <input type="radio" id="noPoliticallyExposed" name="politicallyExposed" value="no" checked>
+        <label for="noPoliticallyExposed">No</label>
+      </div>
+      <div class="form-group">
+        <label for="politicallyExposedFam"><br>Are you any beneficial owner, a family member of the above?</label>
+        <input type="radio" id="yesPoliticallyExposedFam" name="politicallyExposedFam" value="yes">
+        <label for="yesPoliticallyExposedFam">Yes</label>
+        <input type="radio" id="noPoliticallyExposedFam" name="politicallyExposedFam" value="no" checked>
+        <label for="noPoliticallyExposedFam">No</label>
+      </div>
+      <div class="form-group">
+        <label for="politicallyExposedRel"><br>Are you any beneficial owner, a close associate of the above?</label>
+        <input type="radio" id="yesPoliticallyExposedRel" name="politicallyExposedRel" value="yes">
+        <label for="yesPoliticallyExposedRel">Yes</label>
+        <input type="radio" id="noPoliticallyExposedRel" name="politicallyExposedRel" value="no" checked>
+        <label for="noPoliticallyExposedRel">No</label>
+      </div>
+
+      <h3>PART 4: Business/Profession Details (if applicable)</h3>
+      <div class="form-group">
+        <label for="businessName">Business Name:</label>
+        <input type="text" id="businessName" name="businessName">
+      </div>
+      <div class="form-group">
+        <label for="NTN">NTN Number:</label>
+        <input type="tel" id="NTN" name="NTN">
+      </div>
+
+      <div class="form-group">
+        <label for="Business Annual Turnover">Business Annual Turnover:</label>
+        <input type="text" id="Business Annual Turnover" name="Business Annual Turnover">
+      </div>
+
+      <div class="form-group">
+        <label for="BussinessDetails">Please provide details of the industry and business(e.g products/services)</label>
+        <textarea type="text" id="BussinessDetails" name="BussinessDetails"></textarea>
+      </div>
+
+      <h3>Affidavit from Seller/Transferor</h3>
+      <div class="form-group">
+        <label for="sellerAffidavit">Upload Affidavit (PDF only):</label>
+        <input type="file" id="sellerAffidavit" name="sellerAffidavit" accept=".pdf">
+      </div>
+
+      <h3>Affidavit from Buyer</h3>
+      <div class="form-group">
+        <label for="buyerAffidavit">Upload Affidavit (PDF only):</label>
+        <input type="file" id="buyerAffidavit" name="buyerAffidavit" accept=".pdf">
+      </div>
+
+      <h3>Tax Files</h3>
+      <div class="form-group">
+        <label for="taxFile">Upload Tax Files (PDF only):</label>
+        <input type="file" id="taxFile" name="taxFile" accept=".pdf">
+      </div>
+      <a href="waitingApproval.html" class="button">Submit</a>
+
+
+      </form>
+      </main>
+      </body>
+      </html>
+      

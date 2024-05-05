@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+        
+        .card {
+            max-width: 1000px; /* Set maximum width for the card */
+            width: 100%; /* Make card responsive */
+            border-radius: 10px; /* Rounded corners for the card */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow to the card */
+            padding: 20px; /* Add padding to the card */
+        }
+
+        .btn-color {
+            background-color: rgba(13, 32, 118, 255);
+            color: #fff;
+            padding: 10px 20px; /* Adjust button padding */
+            border-radius: 5px; /* Rounded corners for the button */
+            border: none; /* Remove button border */
+            cursor: pointer; /* Add pointer cursor on hover */
+            width: 100%; /* Make button width full */
+        }
+
+        .profile-image-pic {
+            width: 100px; /* Adjust profile image width */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .mb-3 {
+            margin-bottom: 20px; /* Adjust margin bottom for form elements */
+        }
+
+        .cardbody-color {
+            background-color: #ebf2fa;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0d2076; /* Change link color */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        .form-control {
+            height: 20px; /* Adjust height of input fields */
+            font-size: 16px; /* Adjust font size of input fields */
+            padding: 10px 20px; /* Adjust padding of input fields */
+            /*width: 100%;*/
+        }
+
+        .text-center {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            
+            <div class="card my-5">
+
+                <form class="card-body cardbody-color p-lg-5">
+
+                    <div class="text-center">
+                        <img src="https://lda.gop.pk/ldaonline/plugins/images/logo3.png"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                             width="100px" alt="profile">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                               placeholder="Email">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="cnic" aria-describedby="cnicHelp"
+                               placeholder="CNIC">
+                    </div>
+
+
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+
+                    <div class="text-center">
+                        <a href="Login1.html" class="btn btn-color">
+                            <span>Sign Up</span>
+                        </a>
+                    </div>
+                    
+
+                    <div id="emailHelp" class="form-text text-center mb-5 text-dark">Already Registered? 
+                    <a href="Login1.html"class="text-dark fw-bold">Sign In</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
